@@ -24,10 +24,22 @@ class MyStaticResourceTest {
 
     @TestSecurity(user = "isabell", roles = {"nouser"})
     @Test
-    void runsNoAuth() {
+    void runsNoAuthWrongBody() {
         given()
                 .contentType(MediaType.APPLICATION_JSON)
                 .body("{}")
+                .post("/api/static")
+                .then()
+                .log().body()
+                .statusCode(403);
+    }
+
+    @TestSecurity(user = "isabell", roles = {"nouser"})
+    @Test
+    void runsNoAuthCorrectBody() {
+        given()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body("{\"text\": \"bla\"}")
                 .post("/api/static")
                 .then()
                 .log().body()

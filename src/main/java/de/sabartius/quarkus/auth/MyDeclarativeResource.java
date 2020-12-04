@@ -7,7 +7,7 @@ import javax.ws.rs.Path;
 public class MyDeclarativeResource {
 
     @POST
-    public void postIt(final MyBody body) {
-
+    public String postIt(final MyBody body) {
+        return body.text;
     }
 }

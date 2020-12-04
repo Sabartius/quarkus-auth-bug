@@ -10,5 +10,7 @@ public class MyStaticResource {
 
     @RolesAllowed("User")
     @POST
-    public void postIt(final MyBody body) {}
+    public String postIt(final MyBody body) {
+        return body.text;
+    }
 }
